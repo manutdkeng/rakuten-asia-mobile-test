@@ -24,6 +24,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:autoSizeMinTextSize="14sp"
             app:autoSizeTextType="uniform"
+            android:maxLines="1"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Display" />
 

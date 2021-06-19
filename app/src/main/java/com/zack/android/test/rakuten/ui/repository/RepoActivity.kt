@@ -1,7 +1,10 @@
 package com.zack.android.test.rakuten.ui.repository
 
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -80,11 +83,30 @@ class RepoActivity : AppCompatActivity() {
             type.setNullableText(model.type)
             language.setNullableText(model.language)
             description.setNullableText(model.description)
-            website.setNullableText(model.website)
+            setTextLink(model.website, website)
         }
         val builder = AlertDialog.Builder(this)
             .setView(moreInfoBinding.root)
             .create()
         builder.show()
+    }
+
+    private fun setTextLink(url: String?, textView: TextView) {
+        if (!url.isNullOrEmpty()) {
+            var prefix = when {
+                url.startsWith("https") -> "https"
+                url.startsWith("http") -> "http"
+                else -> null
+            }
+            if (!prefix.isNullOrEmpty()) {
+                val fakeUrl = url.replace(prefix, "rakuten")
+                textView.text = Html.fromHtml("<a href='$fakeUrl'>$url</a>")
+                textView.movementMethod = LinkMovementMethod.getInstance()
+            } else {
+                textView.text = url
+            }
+        } else {
+            textView.text = ""
+        }
     }
 }
