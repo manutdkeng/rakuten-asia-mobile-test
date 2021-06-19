@@ -9,6 +9,7 @@ import com.zack.android.test.rakuten.repository.BaseRepository
 import com.zack.android.test.rakuten.utils.Event
 import com.zack.android.test.rakuten.utils.Result
 import kotlinx.coroutines.launch
+import java.net.URLDecoder
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val repository: BaseRepository) : ViewModel() {
@@ -48,7 +49,7 @@ class MainViewModel @Inject constructor(private val repository: BaseRepository) 
 
     private fun postNextButton(next: String?) {
         val nextLink: String? = next?.split(AFTER_PARAM)?.let {
-            if (it.size > 1) it[1] else null
+            if (it.size > 1) URLDecoder.decode(it[1], Charsets.UTF_8.displayName()) else null
         }
         _nextButtonLiveData.value = nextLink
     }

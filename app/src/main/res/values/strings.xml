@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Rakuten Asia Test</string>
 
-    <string name="base_url">https://api.bitbucket.org/2.0/repositories/</string>
+    <string name="base_url">https://api.bitbucket.org/2.0/</string>
 
     <string name="api_error">Unable to retrieve repositories. Please try it again later.</string>
     <string name="avatar">avatar</string>
