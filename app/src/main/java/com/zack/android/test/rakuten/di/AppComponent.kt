@@ -3,6 +3,7 @@ package com.zack.android.test.rakuten.di
 import android.content.Context
 import com.zack.android.test.rakuten.MyApplication
 import com.zack.android.test.rakuten.api.di.NetworkModule
+import com.zack.android.test.rakuten.ui.repository.RepoActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -17,4 +18,5 @@ interface AppComponent {
     }
 
     fun inject(application: MyApplication)
+    fun inject(activity: RepoActivity)
 }

@@ -6,7 +6,8 @@ import com.zack.android.test.rakuten.di.AppComponent
 import com.zack.android.test.rakuten.di.DaggerAppComponent
 
 class MyApplication : Application() {
-    private lateinit var appComponent: AppComponent
+    lateinit var appComponent: AppComponent
+        private set
 
     override fun onCreate() {
         super.onCreate()
