@@ -69,6 +69,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     testImplementation 'junit:junit:4.13.2'
+    testImplementation "android.arch.core:core-testing:$test_arch_core_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$test_coroutine_version"
     // testing assertion framework
     testImplementation "com.google.truth:truth:$test_truth_version"
 
