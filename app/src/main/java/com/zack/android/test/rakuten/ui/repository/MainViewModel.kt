@@ -40,11 +40,18 @@ class MainViewModel @Inject constructor(private val repository: BaseRepository) 
                     _repositoryList.clear()
                     result.data.values?.let { _repositoryList.addAll(it) }
                     postNextButton(result.data.next)
-                    _repositoryLiveData.value = _repositoryList
+                    postRepoList()
                 }
             }
             _loading.value = false
         }
+    }
+
+    private fun postRepoList() {
+        val postList = mutableListOf<RepoModel>().apply {
+            addAll(_repositoryList)
+        }
+        _repositoryLiveData.value = postList
     }
 
     private fun postNextButton(next: String?) {
@@ -62,7 +69,7 @@ class MainViewModel @Inject constructor(private val repository: BaseRepository) 
                 is Result.Success -> {
                     result.data.values?.let { _repositoryList.addAll(it) }
                     postNextButton(result.data.next)
-                    _repositoryLiveData.value = _repositoryList
+                    postRepoList()
                 }
             }
             _loading.value = false
