@@ -6,12 +6,12 @@ import com.zack.android.test.rakuten.fake.FakeService
 import com.zack.android.test.rakuten.repository.BaseRepository
 import com.zack.android.test.rakuten.util.AbstractUnitTest
 import com.zack.android.test.rakuten.util.LiveDataTestUtil
+import com.zack.android.test.rakuten.util.MockitoHelper
 import com.zack.android.test.rakuten.utils.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.anyString
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when` as whenever
 
@@ -31,7 +31,8 @@ class MainViewModelTest : AbstractUnitTest() {
     fun `getRepositories success`() = mainCoroutineRule.testDispatcher.runBlockingTest {
         val expected =
             RepoResponseModel(fakeService.repositories.size, fakeService.repositories, null)
-        whenever(repository.getRepositories(anyString())).thenReturn(Result.Success(expected))
+        whenever(repository.getRepositories(MockitoHelper.anyObject()))
+            .thenReturn(Result.Success(expected))
         mainCoroutineRule.testDispatcher.pauseDispatcher()
 
         viewModel.getRepositories()
@@ -45,7 +46,8 @@ class MainViewModelTest : AbstractUnitTest() {
 
     @Test
     fun `getRepositories error`() = mainCoroutineRule.testDispatcher.runBlockingTest {
-        whenever(repository.getRepositories(anyString())).thenReturn(Result.Error(messageId = SAMPLE_ERROR_ID))
+        whenever(repository.getRepositories(MockitoHelper.anyObject()))
+            .thenReturn(Result.Error(messageId = SAMPLE_ERROR_ID))
         mainCoroutineRule.testDispatcher.pauseDispatcher()
 
         viewModel.getRepositories()
@@ -64,7 +66,11 @@ class MainViewModelTest : AbstractUnitTest() {
             fakeService.repositories,
             "https://api.bitbucket.org/2.0/repositories?after=abc1234"
         )
-        whenever(repository.getRepositories(anyString())).thenReturn(Result.Success(expected))
+        whenever(repository.getRepositories(MockitoHelper.anyObject())).thenReturn(
+            Result.Success(
+                expected
+            )
+        )
 
         viewModel.getRepositories()
         assertThat(LiveDataTestUtil.getValue(viewModel.nextButtonLiveData)).isEqualTo("abc1234")
@@ -74,9 +80,10 @@ class MainViewModelTest : AbstractUnitTest() {
     fun `nextRepositories success`() = mainCoroutineRule.testDispatcher.runBlockingTest {
         val expected =
             RepoResponseModel(fakeService.repositories.size, fakeService.repositories, null)
-        whenever(repository.getRepositories(anyString())).thenReturn(Result.Success(expected))
+        whenever(repository.getRepositories(MockitoHelper.anyObject()))
+            .thenReturn(Result.Success(expected))
         viewModel.getRepositories()
-        val firstRepoList = LiveDataTestUtil.getValue(viewModel.repositoryLiveData)
+        val firstRepoSize = LiveDataTestUtil.getValue(viewModel.repositoryLiveData).size
         mainCoroutineRule.testDispatcher.pauseDispatcher()
 
         viewModel.nextRepositories("abc1234")
@@ -85,7 +92,7 @@ class MainViewModelTest : AbstractUnitTest() {
 
         assertThat(LiveDataTestUtil.getValue(viewModel.loading)).isFalse()
         val newRepoList = LiveDataTestUtil.getValue(viewModel.repositoryLiveData)
-        assertThat(newRepoList.size).isGreaterThan(firstRepoList.size)
+        assertThat(newRepoList.size).isGreaterThan(firstRepoSize)
         assertThat(LiveDataTestUtil.getValue(viewModel.nextButtonLiveData)).isNull()
     }
 
@@ -93,9 +100,11 @@ class MainViewModelTest : AbstractUnitTest() {
     fun `nextRepositories error`() = mainCoroutineRule.testDispatcher.runBlockingTest {
         val expected =
             RepoResponseModel(fakeService.repositories.size, fakeService.repositories, null)
-        whenever(repository.getRepositories(anyString())).thenReturn(Result.Success(expected))
+        whenever(repository.getRepositories(MockitoHelper.anyObject()))
+            .thenReturn(Result.Success(expected))
         viewModel.getRepositories()
-        whenever(repository.getRepositories(anyString())).thenReturn(Result.Error(messageId = SAMPLE_ERROR_ID))
+        whenever(repository.getRepositories(MockitoHelper.anyObject()))
+            .thenReturn(Result.Error(messageId = SAMPLE_ERROR_ID))
         mainCoroutineRule.testDispatcher.pauseDispatcher()
 
         viewModel.nextRepositories("abc1234")

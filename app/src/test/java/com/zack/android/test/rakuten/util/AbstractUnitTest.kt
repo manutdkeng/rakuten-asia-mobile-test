@@ -1,6 +1,6 @@
 package com.zack.android.test.rakuten.util
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 
