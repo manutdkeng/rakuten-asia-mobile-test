@@ -1,10 +1,12 @@
 package com.zack.android.test.rakuten.repository
 
+import com.google.common.truth.Truth.assertThat
 import com.zack.android.test.rakuten.R
 import com.zack.android.test.rakuten.api.ApiService
 import com.zack.android.test.rakuten.fake.FakeService
 import com.zack.android.test.rakuten.util.AbstractUnitTest
 import com.zack.android.test.rakuten.util.assertResult
+import com.zack.android.test.rakuten.utils.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
@@ -25,7 +27,8 @@ class BaseRepositoryTest : AbstractUnitTest() {
     fun `getRepositories success`() = mainCoroutineRule.testDispatcher.runBlockingTest {
         val result = repository.getRepositories(null)
 
-        assertResult(result).isSuccess((apiService as FakeService).repositories)
+        assertResult(result).isSuccess()
+        assertThat((result as Result.Success).data.values).isEqualTo((apiService as FakeService).repositories)
     }
 
     @Test
