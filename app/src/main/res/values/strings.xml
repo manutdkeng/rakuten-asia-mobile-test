@@ -5,7 +5,10 @@
 
     <string name="api_error">Unable to retrieve repositories. Please try it again later.</string>
     <string name="avatar">avatar</string>
-    <string name="type_label">Type:</string>
-    <string name="created_on_label">Created On:</string>
+    <string name="type_label">Type :</string>
+    <string name="created_on_label">Created On :</string>
     <string name="next">Next</string>
+    <string name="owner_label">Owner :</string>
+    <string name="language_label">Language :</string>
+    <string name="description_label">Description :</string>
 </resources>

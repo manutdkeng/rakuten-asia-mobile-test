@@ -12,10 +12,10 @@ import com.zack.android.test.rakuten.databinding.LayoutRepoItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RepoAdapter : ListAdapter<RepoModel, RepoAdapter.RepoViewHolder>(RepoDiffCallback()) {
+class RepoAdapter(private val listener: ((RepoModel) -> Unit)) : ListAdapter<RepoModel, RepoAdapter.RepoViewHolder>(RepoDiffCallback()) {
     val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm Z", Locale.ENGLISH)
 
-    inner class RepoViewHolder(private val binding: LayoutRepoItemBinding) :
+    inner class RepoViewHolder(val binding: LayoutRepoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindView(model: RepoModel) {
             with(binding) {
@@ -47,6 +47,7 @@ class RepoAdapter : ListAdapter<RepoModel, RepoAdapter.RepoViewHolder>(RepoDiffC
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         val model = getItem(position)
         holder.bindView(model)
+        holder.binding.root.setOnClickListener { listener(model) }
     }
 }
 

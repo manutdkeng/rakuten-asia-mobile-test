@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_margin">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/between_view"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintEnd_toStartOf="@id/avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Repository" />
+
+    <TextView
+        android:id="@+id/full_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between_view"
+        app:layout_constraintEnd_toEndOf="@id/name"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:text="git/repository" />
+
+    <TextView
+        android:id="@+id/owner_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/owner_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/full_name" />
+
+    <TextView
+        android:id="@+id/owner_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/between_view"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/owner_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/owner_label"
+        tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/created_on_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between_view"
+        android:text="@string/created_on_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/owner_label" />
+
+    <TextView
+        android:id="@+id/created_on"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/between_view"
+        android:maxLines="1"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/created_on_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/created_on_label"
+        tools:text="@tools:sample/date/ddmmyy" />
+
+    <TextView
+        android:id="@+id/type_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between_view"
+        android:text="@string/type_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/created_on_label" />
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/between_view"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/type_label"
+        app:layout_constraintStart_toEndOf="@id/type_label"
+        tools:text="Java" />
+
+    <TextView
+        android:id="@+id/language_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/half_margin"
+        android:text="@string/language_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/type_label"
+        app:layout_constraintStart_toEndOf="@id/type" />
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/between_view"
+        android:maxLines="1"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/type_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/language_label"
+        tools:text="JAVA" />
+
+    <TextView
+        android:id="@+id/website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between_view"
+        android:autoLink="web"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/type_label"
+        tools:text="http://www.google.com" />
+
+    <TextView
+        android:id="@+id/desc_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between_view"
+        android:text="@string/description_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/website" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/between_view"
+        android:maxLines="1"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/desc_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/desc_label"
+        tools:text="@tools:sample/lorem/random" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
