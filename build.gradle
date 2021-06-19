@@ -33,5 +33,6 @@ ext {
     retrofit_version = "2.9.0"
     test_arch_core_version = "1.1.1"
     test_coroutine_version = "1.4.2"
+    test_mockito_version = "3.6.28"
     test_truth_version = "1.1"
 }
