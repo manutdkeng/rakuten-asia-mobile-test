@@ -31,4 +31,5 @@ ext {
     dagger_version = '2.37'
     lifecycle_version = '2.3.1'
     retrofit_version = "2.9.0"
+    test_truth_version = "1.1"
 }
